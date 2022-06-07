@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Unlicense
 pragma solidity >=0.7.0 <0.9.0;
 
-import "../Test.sol";
+import "./Test.sol";
 
 contract StdCheatsTest is Test {
     Bar test;
