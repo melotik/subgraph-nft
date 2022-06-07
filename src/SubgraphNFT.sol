@@ -9,10 +9,10 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 pragma solidity 0.8.14;
 
-import {ERC721} from "@solmate/tokens/ERC721.sol";
-import {Strings} from "@openzeppelin/utils/Strings.sol";
-import {Ownable} from "@openzeppelin/access/Ownable.sol";
-import {SafeTransferLib} from "@solmate/utils/SafeTransferLib.sol";
+import {ERC721} from "@rari-capital/solmate/src/tokens/ERC721.sol";
+import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import {SafeTransferLib} from "@rari-capital/solmate/src/utils/SafeTransferLib.sol";
 
 error TokenDoesNotExist();
 error NoEthBalance();
@@ -48,7 +48,8 @@ contract SubgraphNFT is ERC721, Ownable {
     //////////////////////////////////////////////////////////////*/
 
     /// @notice Mint NFT function.
-    /// @param amount Amount of token that the sender wants to mint.
+    /// @param receiver Address of the new owner of the minted NFT
+    /// @param level The level this NFT will be when minted
     function mintFor(address receiver, uint256 level) external onlyOwner {
         require(
             level <= _maxLevel,
@@ -72,7 +73,7 @@ contract SubgraphNFT is ERC721, Ownable {
 
     /// @notice gives the level of a given tokenId
     function levelOf(uint256 tokenId) public view virtual returns (uint256) {
-        if (ownerOf[tokenId] == address(0)) {
+        if (_ownerOf[tokenId] == address(0)) {
             revert TokenDoesNotExist();
         }
 
@@ -85,12 +86,12 @@ contract SubgraphNFT is ERC721, Ownable {
             _levelOf[tokenId] < _maxLevel,
             "Level must be less than or equal to max level."
         );
-        if (ownerOf[tokenId] == address(0)) {
+        if (_ownerOf[tokenId] == address(0)) {
             revert TokenDoesNotExist();
         }
 
         unchecked {
-            levels[tokenId]++;
+            _levelOf[tokenId]++;
         }
     }
 
@@ -110,7 +111,7 @@ contract SubgraphNFT is ERC721, Ownable {
         override
         returns (string memory)
     {
-        if (ownerOf[tokenId] == address(0)) {
+        if (_ownerOf[tokenId] == address(0)) {
             revert TokenDoesNotExist();
         }
 

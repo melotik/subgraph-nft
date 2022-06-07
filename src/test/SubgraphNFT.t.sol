@@ -3,7 +3,7 @@ pragma solidity >=0.8.0;
 
 import {SubgraphNFT} from "../SubgraphNFT.sol";
 
-import "@std/Test.sol";
+import {DSTestPlus} from "./imports/DSTestPlus.sol";
 
 contract SubgraphNFTTest is Test {
     using stdStorage for StdStorage;
