@@ -1,0 +1,18 @@
+{
+  "name": "Subgraph Dev: Level 4",
+  "description": "Kick ass subgraph developer.",
+  "external_url": "https://github.com/messari/subgraphs",
+  "animation_url": "https://messari.mypinata.cloud/ipfs/QmSDXLjzNXHQLaBSVF6owNVdao2iWrpe2sU5xBn1rCxw3N/subgraph_level_1.mp4",
+  "attributes": [
+    {
+      "trait_type": "Subgraphs",
+      "value": "8-15"
+    },
+    {
+      "display_type": "number", 
+      "trait_type": "Level", 
+      "value": 4,
+      "max_value": 5
+    }
+  ]
+}

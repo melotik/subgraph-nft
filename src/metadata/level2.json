@@ -1,0 +1,18 @@
+{
+  "name": "Subgraph Dev: Level 2",
+  "description": "Determined subgraph developer.",
+  "external_url": "https://github.com/messari/subgraphs",
+  "animation_url": "https://messari.mypinata.cloud/ipfs/QmSDXLjzNXHQLaBSVF6owNVdao2iWrpe2sU5xBn1rCxw3N/subgraph_level_1.mp4",
+  "attributes": [
+    {
+      "trait_type": "Subgraphs",
+      "value": "2-3"
+    },
+    {
+      "display_type": "number", 
+      "trait_type": "Level", 
+      "value": 2,
+      "max_value": 5
+    }
+  ]
+}
