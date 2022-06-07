@@ -13,6 +13,14 @@ optimizer = true
 optimizer_runs = 1_000
 # Fuzz more than the default 256
 fuzz_runs = 1_000
+# Configure remappings
+remappings = [
+  "@ds=lib/ds-test/src/",
+  "@std=lib/forge-std/src/",
+  "@clones=lib/clones-with-immutable-args/src/",
+  "@openzeppelin=lib/openzeppelin-contracts/contracts/",
+  "@solmate=lib/solmate/src/"
+]
 
 # Extreme Fuzzing CI Profile :P
 [ci]

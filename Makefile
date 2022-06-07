@@ -11,10 +11,10 @@ solc:; nix-env -f https://github.com/dapphub/dapptools/archive/master.tar.gz -iA
 clean  :; forge clean
 
 # Install the packages
-install :; yarn
+install :; forge install
 
 # Update Dependencies
-update:; yarn upgrade
+update:; forge update
 
 # Builds
 build  :; forge build

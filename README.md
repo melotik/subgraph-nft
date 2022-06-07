@@ -15,14 +15,23 @@ Template found [here](https://github.com/abigger87/femplate)
 Setup project locally:
 
 ```bash
+yarn
 make
 ```
 
+To lint:
+```bash
+yarn run lint
+```
 
+To test:
+```bash
+make test
+```
 
 ### Resources
 
 - https://mirror.xyz/juliancanderson.eth/D94omhhrd4wiWkqSWjY55y-jhtVIBLl9ZZoHk1IERPE
 - https://github.com/Rari-Capital/solmate
-- 
+- https://stackoverflow.com/a/35778105
 

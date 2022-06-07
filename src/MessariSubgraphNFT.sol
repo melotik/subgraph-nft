@@ -9,10 +9,10 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 pragma solidity 0.8.14;
 
-import {ERC721} from "@rari-capital/solmate/src/tokens/ERC721.sol";
-import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
-import {SafeTransferLib} from "@rari-capital/solmate/src/utils/SafeTransferLib.sol";
+import {ERC721} from "@solmate/tokens/ERC721.sol";
+import {Strings} from "@openzeppelin/utils/Strings.sol";
+import {Ownable} from "@openzeppelin/access/Ownable.sol";
+import {SafeTransferLib} from "@solmate/utils/SafeTransferLib.sol";
 
 error TokenDoesNotExist();
 error NoEthBalance();
@@ -20,10 +20,11 @@ error NoEthBalance();
 /// @title Subgraph NFT Airdrop
 /// @title SubgraphNFT
 /// @author Dylan Melotik <@dylanmelotik>
-contract SubgraphNFT is ERC721, Ownable {
+contract MessariSubgraphNFT is ERC721, Ownable {
     using Strings for uint256;
 
-    uint256 private _maxLevel = 5;
+    uint256 public minLevel = 1;
+    uint256 public maxLevel = 5;
     uint256 public totalSupply = 0;
     string public baseURI;
 
@@ -52,7 +53,11 @@ contract SubgraphNFT is ERC721, Ownable {
     /// @param level The level this NFT will be when minted
     function mintFor(address receiver, uint256 level) external onlyOwner {
         require(
-            level <= _maxLevel,
+            level >= minLevel,
+            "Level must be greater than or equal to min level."
+        );
+        require(
+            level <= maxLevel,
             "Level must be less than or equal to max level."
         );
 
@@ -80,19 +85,24 @@ contract SubgraphNFT is ERC721, Ownable {
         return _levelOf[tokenId];
     }
 
+    /// @notice LeveledUp is emitted whenever an NFT is increased in level.
+    event LeveledUp(uint256 tokenId, uint256 newLevel);
+
     /// @notice increases the level of a given NFT
     function levelUp(uint256 tokenId) external onlyOwner {
-        require(
-            _levelOf[tokenId] < _maxLevel,
-            "Level must be less than or equal to max level."
-        );
         if (_ownerOf[tokenId] == address(0)) {
             revert TokenDoesNotExist();
         }
+        require(
+            _levelOf[tokenId] < maxLevel,
+            "Level must be less than max level."
+        );
 
         unchecked {
             _levelOf[tokenId]++;
         }
+
+        emit LeveledUp(tokenId, _levelOf[tokenId]);
     }
 
     /*///////////////////////////////////////////////////////////////
