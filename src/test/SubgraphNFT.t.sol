@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-pragma solidity 0.8.13;
+pragma solidity >=0.8.0;
 
-import {Greeter} from "../Greeter.sol";
+import {SubgraphNFT} from "../SubgraphNFT.sol";
 
 import "@std/Test.sol";
 
-contract GreeterTest is Test {
+contract SubgraphNFTTest is Test {
     using stdStorage for StdStorage;
 
     Greeter greeter;
